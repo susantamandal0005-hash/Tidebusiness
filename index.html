@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tide Employee Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(180deg, #D4E7F7 0%, #FFFFFF 30%);
+            --text-dark: #1A1C1E;
+            --text-muted: #43474E;
+            --primary-blue: #0061A4;
+            --card-blue: #C2E7FF;
+            --card-light-blue: #E1F3FF;
+            --card-green: #D1FAE5;
+            --whatsapp-color: #25D366;
+            --white: #FFFFFF;
+            --nav-inactive: #535F70;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #F8FAFC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Mobile Container Wrapper simulating the phone screen */
+        .phone-container {
+            width: 100%;
+            max-width: 412px;
+            height: 900px;
+            background: var(--bg-gradient);
+            border-radius: 40px;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            border: 8px solid #1A1C1E;
+        }
+
+        /* Header Layout */
+        .header {
+            padding: 24px 20px 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+            display: inline-block;
+            box-shadow: inset -4px -4px 8px rgba(0,0,0,0.2);
+        }
+
+        .brand h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .profile-icon {
+            font-size: 26px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Welcome Text */
+        .welcome-section {
+            padding: 0 20px 20px 20px;
+        }
+
+        .welcome-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .welcome-section p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Main Content Scrollable View */
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 16px 100px 16px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 16px 4px 12px 4px;
+        }
+
+        /* Form Interactive Action Buttons (Updated for <a> tag support) */
+        .action-card {
+            background-color: var(--card-blue);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            text-decoration: none; /* লিংক আন্ডারলাইন রিমুভ করার জন্য */
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s;
+        }
+
+        .action-card:active {
+            transform: scale(0.98);
+            background-color: #B2DCF7;
+        }
+
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .card-icon {
+            font-size: 24px;
+            color: var(--text-dark);
+            width: 32px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-text h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 2px;
+        }
+
+        .card-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            max-width: 240px;
+        }
+
+        .arrow-right {
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+
+        /* Special Highlighting border logic for Onboarding per screenshot */
+        .action-card.highlighted {
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4); 
+        }
+
+        /* Data Preview Cards Layout */
+        .preview-card {
+            background-color: var(--card-light-blue);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: transform 0.1s ease;
+        }
+
+        .preview-card:active {
+            transform: scale(0.98);
+        }
+
+        /* WhatsApp Group Link Cards */
+        .whatsapp-card {
+            background-color: var(--card-green);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .whatsapp-icon {
+            color: var(--whatsapp-color);
+            font-size: 26px;
+        }
+
+        /* Contact Details Cards */
+        .contact-card {
+            background-color: var(--white);
+            border: 1px solid #E1E3E5;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .contact-phone-btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* Fixed Bottom Navigation Bar */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background-color: #EDF4FA;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #D6E3F0;
+            padding-bottom: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--nav-inactive);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            flex: 1;
+            position: relative;
+            height: 100%;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        .nav-item.active {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* Active bottom tab indicator line */
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background-color: var(--primary-blue);
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Hide Scrollbar for sleek UI presentation */
+        .content-scroll::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        
+        <header class="header">
+            <div class="brand">
+                <span class="logo-icon"></span>
+                <h1>Tide Employee Hub</h1>
+            </div>
+            <i class="fa-regular fa-circle-user profile-icon" onclick="showTab('profile')"></i>
+        </header>
+
+        <div class="welcome-section">
+            <h2 id="welcome-text">Welcome, Sarah!</h2>
+            <p id="sub-text">Please complete your surveys and forms.</p>
+        </div>
+
+        <main class="content-scroll">
+            
+            <div id="surveys-section">
+                <h2 class="section-title">My Surveys & Forms</h2>
+
+                <a href="https://forms.gle/nVqXBmFY68stFFgr9" class="action-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div class="card-text">
+                            <h3>Visit Form</h3>
+                            <p>Share feedback on recent visits or interactions.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right arrow-right"></i>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOpbtS8-ihcsteBYcdSBkjIMBv8U9Ry_CKviHz0rQ0HHVPZw/viewform?usp=dialog" class="action-card highlighted">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                        <div class="card-text">
+                            <h3>Onboarding Form</h3>
+                            <p>Complete steps for your recent onboarding process.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right arrow-right"></i>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdMhKQ9oLTT6Jv6AgJaru6q6CaKsHEA1vYaryfhEgEv4RfEKA/viewform?usp=dialog" class="action-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-award"></i></div>
+                        <div class="card-text">
+                            <h3>Prime Form</h3>
+                            <p>Review and submit your annual performance prime review.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right arrow-right"></i>
+                </a>
+
+                <a href="https://forms.gle/1FkJtv6AsPhkwDrd8" class="action-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <div class="card-text">
+                            <h3>Insurance Form</h3>
+                            <p>Manage or update your insurance and benefits details.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right arrow-right"></i>
+                </a>
+
+                <a href="#" class="action-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-wallet"></i></div>
+                        <div class="card-text">
+                            <h3>Transactions Form</h3>
+                            <p>Track, input, or audit daily business transaction records.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right arrow-right"></i>
+                </a>
+            </div>
+
+            <div id="preview-section">
+                <h2 class="section-title">Data Preview</h2>
+
+                <a href="https://docs.google.com/spreadsheets/d/1Qkx7DNm_VGVYzz1W7pJzJOZzMztSwESRtsLF-BVN9V0/edit?usp=drivesdk" class="preview-card">
+                    <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="card-text">
+                        <h3>Preview Visit Data</h3>
+                        <p>View summaries of your previous visit entries.</p>
+                    </div>
+                </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/1aj9C3qp1p4fEqqQNunWKfDacngpVTfIe7NiXFMQb2OU/edit?usp=drivesdk" class="preview-card">
+                    <div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
+                    <div class="card-text">
+                        <h3>Preview Onboarding Data</h3>
+                        <p>Check the status and details of your onboarding steps.</p>
+                    </div>
+                </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/1ijbdYfrg33VjJPwuvpLcQ_ZoTpFc_xluClujEy2GcDg/edit?usp=drivesdk" class="preview-card">
+                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="card-text">
+                        <h3>Preview Prime Data</h3>
+                        <p>Access a preview of your performance data summaries.</p>
+                    </div>
+                </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/14dC7D0Z-5zwx7SUlMe8-D0NeCP0eV_QDsZXppqQSjR8/edit?usp=drivesdk" class="preview-card">
+                    <div class="card-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                    <div class="card-text">
+                        <h3>Preview Insurance Data</h3>
+                        <p>Review policy coverage status and medical benefits logs.</p>
+                    </div>
+                </a>
+
+                <a href="#" class="preview-card">
+                    <div class="card-icon"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="card-text">
+                        <h3>Preview Transactions Data</h3>
+                        <p>Check processing statuses, statements, and ledger summaries.</p>
+                    </div>
+                </a>
+
+                <a href="#" class="preview-card">
+                    <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <div class="card-text">
+                        <h3>Preview Target / Achievement Data</h3>
+                        <p>Analyze performance metrics vs allocated goal summaries.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div id="profile-section" style="display: none;">
+                <h2 class="section-title">Official WhatsApp Groups</h2>
+                
+                <a href="https://chat.whatsapp.com/GxeWWGwaSbD6s15rCFqojm" target="_blank" class="whatsapp-card">
+                    <div class="card-left">
+                        <div class="card-icon whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="card-text">
+                            <h3>Tide Jhargram Group</h3>
+                            <p>Click to join official announcement group.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-right" style="font-size: 14px;"></i>
+                </a>
+
+                <a href="https://chat.whatsapp.com/KNB33veLIFLDNxs7RaFoOL" target="_blank" class="whatsapp-card">
+                    <div class="card-left">
+                        <div class="card-icon whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="card-text">
+                            <h3>Tide Whitelisting Group</h3>
+                            <p>Click to join regional discussion group.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-right" style="font-size: 14px;"></i>
+                </a>
+
+                <a href="https://chat.whatsapp.com/GxYJKjk2fyv3MEZMyw3EHh" target="_blank" class="whatsapp-card">
+                    <div class="card-left">
+                        <div class="card-icon whatsapp-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div class="card-text">
+                            <h3>Tide Personal Group</h3>
+                            <p>Click to join support & helpdesk group.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square arrow-right" style="font-size: 14px;"></i>
+                </a>
+
+                <h2 class="section-title" style="margin-top: 24px;">Management Contacts</h2>
+
+                <div class="contact-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-user-tie"></i></div>
+                        <div class="card-text">
+                            <h3>Zonal Manager</h3>
+                            <p>+91 95083 89443</p>
+                        </div>
+                    </div>
+                    <a href="tel:+91 95083 89443" class="contact-phone-btn"><i class="fa-solid fa-phone"></i></a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-user-shield"></i></div>
+                        <div class="card-text">
+                            <h3>State Head</h3>
+                            <p>+880 1800-000000</p>
+                        </div>
+                    </div>
+                    <a href="tel:+8801800000000" class="contact-phone-btn"><i class="fa-solid fa-phone"></i></a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-user-gear"></i></div>
+                        <div class="card-text">
+                            <h3>Chief Growth Officer (CGO)</h3>
+                            <p>+91 96436 28448</p>
+                        </div>
+                    </div>
+                    <a href="tel:+91 96436 28448" class="contact-phone-btn"><i class="fa-solid fa-phone"></i></a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="card-left">
+                        <div class="card-icon"><i class="fa-solid fa-user-group"></i></div>
+                        <div class="card-text">
+                            <h3>Area Sales Manager (ASM)</h3>
+                            <p>+91 83880 08287</p>
+                        </div>
+                    </div>
+                    <a href="tel:+91 83880 08287" class="contact-phone-btn"><i class="fa-solid fa-phone"></i></a>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" id="nav-home" onclick="showTab('home')">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </div>
+            <div class="nav-item" id="nav-forms" onclick="showTab('forms')">
+                <i class="fa-regular fa-file-lines"></i>
+                <span>Forms</span>
+            </div>
+            <div class="nav-item" id="nav-status" onclick="showTab('status')">
+                <i class="fa-regular fa-clock"></i>
+                <span>Status</span>
+            </div>
+            <div class="nav-item" id="nav-profile" onclick="showTab('profile')">
+                <i class="fa-regular fa-user"></i>
+                <span>Profile</span>
+            </div>
+        </nav>
+
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            const surveysSection = document.getElementById('surveys-section');
+            const previewSection = document.getElementById('preview-section');
+            const profileSection = document.getElementById('profile-section');
+            const welcomeText = document.getElementById('welcome-text');
+            const subText = document.getElementById('sub-text');
+
+            surveysSection.style.display = 'none';
+            previewSection.style.display = 'none';
+            profileSection.style.display = 'none';
+
+            if (tabName === 'home') {
+                document.getElementById('nav-home').classList.add('active');
+                surveysSection.style.display = 'block';
+                previewSection.style.display = 'block';
+                welcomeText.innerText = "Welcome, Sarah!";
+                subText.innerText = "Please complete your surveys and forms.";
+            }
+            else if (tabName === 'forms') {
+                document.getElementById('nav-forms').classList.add('active');
+                surveysSection.style.display = 'block';
+                welcomeText.innerText = "My Surveys & Forms";
+                subText.innerText = "Manage and submit your employee forms below.";
+            } 
+            else if (tabName === 'status') {
+                document.getElementById('nav-status').classList.add('active');
+                previewSection.style.display = 'block';
+                welcomeText.innerText = "Data Preview Status";
+                subText.innerText = "Review your submitted data logs and history.";
+            }
+            else if (tabName === 'profile') {
+                document.getElementById('nav-profile').classList.add('active');
+                profileSection.style.display = 'block';
+                welcomeText.innerText = "My Profile & Contacts";
+                subText.innerText = "Quick access to communication groups and helpline numbers.";
+            }
+        }
+    </script>
+</body>
+</html>
