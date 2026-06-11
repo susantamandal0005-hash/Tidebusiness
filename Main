@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Zone Service Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
+        nav { display: flex; justify-content: center; background: #34495e; padding: 10px; }
+        nav button { background: none; border: none; color: white; padding: 10px 20px; cursor: pointer; font-size: 16px; }
+        nav button:hover { background: #1abc9c; }
+        .container { padding: 20px; max-width: 900px; margin: auto; background: white; min-height: 400px; }
+        .tab-content { display: none; }
+        .active { display: block; }
+        ul { list-style: none; padding: 0; }
+        li { background: #ecf0f1; margin: 8px 0; padding: 12px; border-left: 5px solid #1abc9c; }
+        /* লিঙ্ক স্টাইল */
+        li a { text-decoration: none; color: #2c3e50; font-weight: bold; display: block; }
+        li:hover { background: #d5dbdb; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Smart Zone Service Portal</h1>
+</header>
+
+<nav>
+    <button onclick="openTab('student')">Student Service</button>
+    <button onclick="openTab('document')">Document Service</button>
+    <button onclick="openTab('govt')">Govt Scheme</button>
+    <button onclick="openTab('find')">Find Document</button>
+</nav>
+
+<div class="container">
+    <div id="student" class="tab-content active">
+        <h2>Student Service</h2>
+        <ul>
+            <li><a href="https://example.com" target="_blank">Collage Admission</a></li>
+            <li><a href="https://example.com" target="_blank">ITI Admission</a></li>
+            <li><a href="https://example.com" target="_blank">Jexpo/ Polytechnic Admission</a></li>
+            <li><a href="https://example.com" target="_blank">ABC CARD GENERATE</a></li>
+            <li><a href="https://example.com" target="_blank">STUDENT CREDIT CARD</a></li>
+            <li><a href="https://example.com" target="_blank">Swami Vivekananda Scholarship</a></li>
+        </ul>
+    </div>
+
+    <div id="document" class="tab-content">
+        <h2>Document Service</h2>
+        <ul>
+            <li><a href="https://myaadhaar.uidai.gov.in/" target="_blank">Aadhaar Card</a></li>
+            <li><a href="https://ictpanagency.com/portallogin/login" target="_blank">Pan Card</a></li>
+            <li><a href="https://voters.eci.gov.in/login" target="_blank">Voter Card</a></li>
+            <li><a href="https://example.com" target="_blank">Ration Card</a></li>
+            <li><a href="https://example.com" target="_blank">E-Shram Card</a></li>
+            <li><a href="https://example.com" target="_blank">Swasthya Sathi Card</a></li>
+            <li><a href="https://example.com" target="_blank">ABHA Card</a></li>
+            <li><a href="https://example.com" target="_blank">Caste Certificate</a></li>
+            <li><a href="https://example.com" target="_blank">Marriage Certificate</a></li>
+            <li><a href="https://example.com" target="_blank">Driving License</a></li>
+            <li><a href="https://example.com" target="_blank">Trade License</a></li>
+            <li><a href="https://example.com" target="_blank">Birth Certificate</a></li>
+            <li><a href="https://example.com" target="_blank">Panchayat Certificate</a></li>
+            <li><a href="https://example.com" target="_blank">Land Registration Certificate</a></li>
+            <li><a href="https://example.com" target="_blank">Udyam Registration</a></li>
+        </ul>
+    </div>
+
+    <div id="govt" class="tab-content">
+        <h2>Govt Scheme</h2>
+        <ul>
+            <li><a href="https://example.com" target="_blank">PM Kisan</a></li>
+            <li><a href="https://example.com" target="_blank">Krishak Bandhu</a></li>
+            <li><a href="https://example.com" target="_blank">Annapurna Bhandar</a></li>
+            <li><a href="https://example.com" target="_blank">Employment Bank</a></li>
+            <li><a href="https://example.com" target="_blank">Ayushman Bharat</a></li>
+            <li><a href="https://example.com" target="_blank">PM Jan Dhan Yojana</a></li>
+            <li><a href="https://example.com" target="_blank">PMJJBY/PMSBY</a></li>
+            <li><a href="https://example.com" target="_blank">Atal Pension Yojana</a></li>
+            <li><a href="https://example.com" target="_blank">PM Awas Yojana</a></li>
+            <li><a href="https://example.com" target="_blank">PM Mudra Yojana</a></li>
+            <li><a href="https://example.com" target="_blank">Old Age Pension</a></li>
+            <li><a href="https://example.com" target="_blank">Yuba Shakti</a></li>
+            <li><a href="https://example.com" target="_blank">Kanyashree Prakalpa</a></li>
+            <li><a href="https://example.com" target="_blank">Rupashree Prakalpa</a></li>
+            <li><a href="https://example.com" target="_blank">Samajik Suraksha Yojana</a></li>
+        </ul>
+    </div>
+
+    <div id="find" class="tab-content">
+        <h2>Find Document</h2>
+        <ul>
+            <li><a href="https://example.com" target="_blank">Aadhaar to Pan Card</a></li>
+            <li><a href="https://example.com" target="_blank">Aadhaar to Ration Card</a></li>
+            <li><a href="https://example.com" target="_blank">Aadhaar to Voter Card</a></li>
+            <li><a href="https://example.com" target="_blank">Aadhaar to Driving License</a></li>
+            <li><a href="https://example.com" target="_blank">Aadhaar to Krishak Bandhu ID</a></li>
+            <li><a href="https://example.com" target="_blank">Ration Card to Aadhaar</a></li>
+            <li><a href="https://example.com" target="_blank">Ration Card to Pan Card</a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function openTab(tabName) {
+        var x = document.getElementsByClassName("tab-content");
+        for (var i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+    }
+</script>
+
+</body>
+</html>
+  
